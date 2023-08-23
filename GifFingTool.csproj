@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0254D472-A6BE-43EE-8A70-1D14708B8884}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GifFingTool</RootNamespace>
+    <AssemblyName>GifFingTool</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.7.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Util\ArrayUtil.cs" />
+    <Compile Include="Util\MathStk.cs" />
+    <Compile Include="Util\TriangleUtil.cs" />
+    <Page Include="Gui\Windows\ColorPickerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Misc\ButtonGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Misc\FontPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Misc\ImageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Misc\ScrollableIntValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Misc\ShapePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Toolbar\BasicToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\Controls\Toolbar\ToolbarStandardToolBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Windows\TargetSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\BitmapModification\BmpModColorPixels.cs" />
+    <Compile Include="Data\BitmapModification\BmpModColorsPixels.cs" />
+    <Compile Include="Data\BitmapModification\BmpModDrawLine.cs" />
+    <Compile Include="Data\BitmapModification\BmpModMergePixels.cs" />
+    <Compile Include="Data\BitmapModification\BmpModRotateFlip.cs" />
+    <Compile Include="Data\BitmapModification\Util.cs" />
+    <Compile Include="Data\ColorUtil.cs" />
+    <Compile Include="Data\GifBitmap.cs" />
+    <Compile Include="Data\GifBitmapEditingContext.cs" />
+    <Compile Include="Data\GifBitmapUndoRedoAction.cs" />
+    <Compile Include="Data\IBitmapModifyStep.cs" />
+    <Compile Include="Data\MinimalRamBoolArray.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ScreenExtensions.cs" />
+    <Compile Include="Gfx\CursorUtil.cs" />
+    <Compile Include="GifEncoding\GifWriter.cs" />
+    <Compile Include="GifEncoding\GifWriterExtensions.cs" />
+    <Compile Include="Gui\Dialogs\UtilDialogs.cs" />
+    <Compile Include="Gui\GlobalHooks\Hook.cs" />
+    <Compile Include="Gui\GlobalHooks\HookManager.cs" />
+    <Compile Include="Gui\GlobalHooks\InterceptKeys.cs" />
+    <Compile Include="Gui\GlobalHooks\TimedHook.cs" />
+    <Compile Include="Gui\GlobalHooks\TimeframeDependantHook.cs" />
+    <Compile Include="Gui\Shortcuts\InterceptKeys.cs" />
+    <Compile Include="Gui\Shortcuts\KeySet.cs" />
+    <Compile Include="Gui\Shortcuts\KeyTimers.cs" />
+    <Compile Include="Gui\Shortcuts\ShortcutManager.cs" />
+    <Compile Include="Gui\TargetArea.cs" />
+    <Compile Include="Gui\Windows\ColorPickerWindow.xaml.cs">
+      <DependentUpon>ColorPickerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Misc\ButtonGrid.xaml.cs">
+      <DependentUpon>ButtonGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Misc\FontPicker.xaml.cs">
+      <DependentUpon>FontPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Misc\ImageButton.xaml.cs">
+      <DependentUpon>ImageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Misc\ScrollableIntValue.xaml.cs">
+      <DependentUpon>ScrollableIntValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Misc\ShapePicker.xaml.cs">
+      <DependentUpon>ShapePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Toolbar\BasicToolbar.xaml.cs">
+      <DependentUpon>BasicToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Toolbar\IToolbarTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarButton.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarStandardToolBase.xaml.cs">
+      <DependentUpon>ToolbarStandardToolBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolEraser.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolHighlighter.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolNone.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolPen.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolShapes.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolText.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\EraserTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\HighlighterToolV2.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\HighlighterTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\NoTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\PenToolV2.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\PenTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ShapesTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\TextTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolBase.cs" />
+    <Compile Include="Gui\Windows\Controls\PreviewImageDisplayColumn.cs" />
+    <Compile Include="Gui\Windows\Controls\GifImageList.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolBaseV2.cs" />
+    <Compile Include="Gui\Windows\Masking.cs" />
+    <Compile Include="Gui\Windows\TargetSelectionWindow.xaml.cs">
+      <DependentUpon>TargetSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Windows\Temp.cs" />
+    <Compile Include="IO\FileTypeSaving\SaveFileTypeHelper.cs" />
+    <Compile Include="IO\SaveFileHelper.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImageEncoding\" />
+    <Folder Include="Settings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AddAtBack.png" />
+    <Resource Include="Resources\Images\AddAtFront.png" />
+    <Resource Include="Resources\Images\Arrow_Left.png" />
+    <Resource Include="Resources\Images\Arrow_Right.png" />
+    <Resource Include="Resources\Images\CreateFirst.png" />
+    <Resource Include="Resources\Images\CustomDelays.png" />
+    <Resource Include="Resources\Images\CustomDelaysInactive.png" />
+    <Resource Include="Resources\Images\Eraser.png" />
+    <Resource Include="Resources\Images\Gif_Scale_Down.png" />
+    <Resource Include="Resources\Images\Gif_Scale_Unchanged.png" />
+    <Resource Include="Resources\Images\Gif_Scale_Up.png" />
+    <Resource Include="Resources\Images\Highlighter.png" />
+    <Resource Include="Resources\Images\oghighlighter.png" />
+    <Resource Include="Resources\Images\ogpen.png" />
+    <Resource Include="Resources\Images\oldScreenshot.png" />
+    <Resource Include="Resources\Images\OldSelection.png" />
+    <Resource Include="Resources\Images\OldSelection_Reset.png" />
+    <Resource Include="Resources\Images\OldSelection_Reset_Inactive.png" />
+    <Resource Include="Resources\Images\Opacity.png" />
+    <Resource Include="Resources\Images\OpacityWhiteBackground.png" />
+    <Resource Include="Resources\Images\Pen.png" />
+    <Resource Include="Resources\Images\Screenshot.png" />
+    <Resource Include="Resources\Images\Selected_Icon.png" />
+    <Resource Include="Resources\Images\Selection.png" />
+    <Resource Include="Resources\Images\Selection2.png" />
+    <Resource Include="Resources\Images\Selection_Reset.png" />
+    <Resource Include="Resources\Images\Selection_Reset_Inactive.png" />
+    <Resource Include="Resources\Images\Size_Height.png" />
+    <Resource Include="Resources\Images\Size_Width.png" />
+    <Resource Include="Resources\Images\Text.png" />
+    <Resource Include="Resources\Images\zahnrad.png" />
+    <Resource Include="Attributions.txt" />
+    <Resource Include="Resources\Images\Shapes.png" />
+    <Content Include="Resources\Sounds\screenshotMade.wav" />
+    <Content Include="Resources\Sounds\screenshotRemoved.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

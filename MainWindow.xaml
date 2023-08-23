@@ -1,0 +1,89 @@
+﻿<Window x:Class="GifFingTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GifFingTool"
+        xmlns:toolbar="clr-namespace:GifFingTool.Gui.Windows.Controls.Toolbar"
+        xmlns:controls="clr-namespace:GifFingTool.Gui.Windows.Controls.Misc"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="800"
+        MouseDoubleClick="Window_MouseDoubleClick"
+        MouseRightButtonDown="Window_MouseRightButtonDown"
+        Closed="Window_Closed"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="124"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <toolbar:BasicToolbar x:Name="Toolbar" TriggerCreateScreenshot="TakeScreenshot" TriggerSelectTarget="ShowTargetSelectWindow"></toolbar:BasicToolbar>
+        
+        <DataGrid
+            ScrollViewer.CanContentScroll="False"
+            Grid.Row="1"
+              x:Name="PreviewImageDataGrid"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              AutoGenerateColumns="False"
+              HeadersVisibility="None"
+              HorizontalScrollBarVisibility="Disabled"
+              VerticalScrollBarVisibility="Visible"
+              SelectedCellsChanged="PreviewImageDataGrid_SelectedCellsChanged"
+            >
+            <DataGrid.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"/>
+                    <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                </TransformGroup>
+            </DataGrid.LayoutTransform>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style  TargetType="DataGridCell">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
+        <ScrollViewer Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      >
+            <Button x:Name="ImageEditButton" Padding="0" Margin="0" Focusable="False"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        BorderThickness="0" BorderBrush="Red"
+                        PreviewMouseLeftButtonDown="ImageEditButton_MouseLeftButtonDown"
+                        PreviewMouseLeftButtonUp="ImageEditButton_MouseLeftButtonUp"
+                        MouseRightButtonDown="ImageEditButton_MouseRightButtonDown"
+                        MouseRightButtonUp="ImageEditButton_MouseRightButtonUp"
+                        MouseEnter="ImageEditButton_MouseEnter"
+                        MouseLeave="ImageEditButton_MouseLeave"
+                        PreviewMouseMove="ImageEditButton_MouseMove">
+                <Image x:Name="SelectedImageDisplay" VerticalAlignment="Top" Stretch="None"></Image>
+            </Button>
+        </ScrollViewer>
+        
+    </Grid>
+</Window>

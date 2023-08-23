@@ -1,0 +1,42 @@
+﻿<Grid x:Class="GifFingTool.Gui.Windows.Controls.Misc.ShapePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GifFingTool.Gui.Windows.Controls.Misc"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+           Background="Black"
+      >
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1"></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition Width="1"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="1"></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition Height="1"></RowDefinition>
+    </Grid.RowDefinitions>
+    <local:ButtonGrid x:Name="_buttonGrid" Grid.Column="1" Grid.Row="1">
+        
+    </local:ButtonGrid>
+    <!--<Grid>
+        <ListBox
+            x:Name="ShapesListBox"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.ScrollChanged="ShapesListBox_ScrollChanged"
+            SelectionChanged="ShapesListBox_SelectionChanged"
+            >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <Rectangle Width="10" Height="2" Fill="MediumAquamarine" ToolTip="Line"></Rectangle>
+            <Rectangle Width="10" Height="10" Fill="Crimson" ToolTip="Rectangle"></Rectangle>
+            <Ellipse Width="10" Height="10" Fill="CadetBlue" ToolTip="Ellipse"></Ellipse>
+        </ListBox>
+    </Grid>-->
+</Grid>

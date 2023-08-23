@@ -19,6 +19,7 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
         private Color _color = Color.Red;
         private MinimalRamBoolArray pixelFlags;
         private Point? _previousPoint;
+        private int _previousY = 0;
 
         private protected override IBitmapModifyStep BitmapModifyStep => ActiveBitmapModification;
 
@@ -124,6 +125,7 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
                 }
             }
 
+            _previousY = currentPoint.Y;
             _previousPoint = currentPoint;
             EditingContext.ProcessChangesToBitmap();
         }
@@ -151,7 +153,13 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
 
         public override void MouseMove(int x, int y)
         {
-            ApplyPaint(x, y);
+            if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
+            {
+                ApplyPaint(x, _previousY);
+            } else
+            {
+                ApplyPaint(x, y);
+            }
         }
 
         public override void MouseLeftButtonUp(int x, int y)

@@ -101,6 +101,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolEnumerate.cs" />
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolPolygon.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\EnumerateTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\PolygonTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolBool.cs" />
@@ -220,13 +221,10 @@
     <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolText.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\EraserTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\HighlighterToolV2.cs" />
-    <Compile Include="Gui\Windows\Controls\Tools\HighlighterTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\NoTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\PenToolV2.cs" />
-    <Compile Include="Gui\Windows\Controls\Tools\PenTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\ShapesTool.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\TextTool.cs" />
-    <Compile Include="Gui\Windows\Controls\Tools\ToolBase.cs" />
     <Compile Include="Gui\Windows\Controls\PreviewImageDisplayColumn.cs" />
     <Compile Include="Gui\Windows\Controls\GifImageList.cs" />
     <Compile Include="Gui\Windows\Controls\Tools\ToolBaseV2.cs" />

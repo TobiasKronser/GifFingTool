@@ -59,7 +59,9 @@ namespace GifFingTool
             _ShortcutManager.RegisterShortcut("Undo", "Undo", Undo, Key.Z, true, false, controlKey);
             _ShortcutManager.RegisterShortcut("Redo", "Redo", Redo, Key.Y, true, false, controlKey);
             _ShortcutManager.RegisterShortcut("Save", "Open the Save-Dialog for the entire gif or the current image.", Save, Key.S, true, false, controlKey);
-            _ShortcutManager.RegisterShortcut("Copy to clipboard", "Copy the current image to clipboard.", CopyCurrentSelection, Key.C, true, false, controlKey);
+            _ShortcutManager.RegisterShortcut("Copy to clipboard", "Copy the current image to clipboard.", AttemptCopyToClipboard, Key.C, true, false, controlKey);
+            _ShortcutManager.RegisterShortcut("Paste from clipboard", "If an image is contained in the clipboard, paste it.", AttemptPasteFromClipboard, Key.V, true, false, controlKey);
+            _ShortcutManager.RegisterShortcut("Delete selected image", "Permanently delets a selected image.", AttemptDeleteSelectedImage, Key.Delete, true, false, new Key[0]);
 
             InterceptKeys.AssureTimeframeCount(1);
             InterceptKeys.RegisterHook(new TimedHook(TryEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.LShiftKey)); //When LShift is pressed twice within 200ms, enable Timeframe 0 for 1000ms
@@ -69,7 +71,7 @@ namespace GifFingTool
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Undo, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.Z)); //When Timeframe 0 is enabled and T is pressed while Shift is being held down, call ShowTargetSelectWindow
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Redo, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.Y));
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Save, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.S));
-            InterceptKeys.RegisterHook(new TimeframeDependantHook(CopyCurrentSelection, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.C));
+            InterceptKeys.RegisterHook(new TimeframeDependantHook(AttemptCopyToClipboard, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.C));
 
             //InterceptKeys.RegisterHook(new Hook(Undo, ModifierKeys.Shift, Keys.Z)); //When Z is pressed while Shift is being held down, call Undo
             //InterceptKeys.RegisterHook(new Hook(Redo, ModifierKeys.Shift, Keys.Y));
@@ -79,9 +81,22 @@ namespace GifFingTool
             Toolbar.SetUpdateListDisplayMethod(UpdateListDisplay);
         }
 
-        private void CopyCurrentSelection()
+        private void AttemptCopyToClipboard()
         {
+            if (_SelectedGifBitmap is null) return;
             System.Windows.Forms.Clipboard.SetImage(_SelectedGifBitmap.ModifiedImage);
+        }
+        private void AttemptPasteFromClipboard()
+        {
+            if (!System.Windows.Forms.Clipboard.ContainsImage()) return;
+            GifBitmap gifBitmap = new GifBitmap(System.Windows.Forms.Clipboard.GetImage());
+            _CurrentImageList.AddBitmap(gifBitmap);
+        }
+        private void AttemptDeleteSelectedImage()
+        {
+            if (_SelectedGifBitmap is null) return;
+            _CurrentImageList.RemoveItem(_SelectedGifBitmap);
+            //_SelectedGifBitmap = null;
         }
 
         private void TryEnableTimeframe()
@@ -157,6 +172,15 @@ namespace GifFingTool
                 _SelectedGifBitmap = (GifBitmap)e.AddedCells[0].Item;
                 _SelectedGifBitmap.Refresh();
                 Toolbar.SetNewTarget(_SelectedGifBitmap);
+            } else
+            {
+                //TODO: Figure out how _CurrentImageList.Count is always 0
+                //TargetSelectionWindow = TargetSelectionWindow;
+                //if (_CurrentImageList.Count == 0)
+                //{
+                //    _SelectedGifBitmap = null;
+                //    Toolbar.SetNewTarget(_SelectedGifBitmap);
+                //}
             }
         }
 

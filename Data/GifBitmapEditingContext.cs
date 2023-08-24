@@ -49,7 +49,13 @@ namespace GifFingTool.Data
         private void ChangeTo(GifBitmap value)
         {
             _GifBitmap = value;
-            Bitmap = new Bitmap(value.ModifiedImage);
+            if (_GifBitmap is null)
+            {
+                Dispose();
+            } else
+            {
+                Bitmap = new Bitmap(value.ModifiedImage);
+            }
         }
 
         private void SetBitmap(Bitmap value)
@@ -62,8 +68,11 @@ namespace GifFingTool.Data
 
         public void Dispose()
         {
-            if (Bitmap is null) return;
-            _Bitmap.UnlockBits(_BitmapData);
+            if (_Bitmap is null) return;
+            if (!(BitmapData is null))
+            {
+                _Bitmap.UnlockBits(_BitmapData);
+            }
             _Bitmap.Dispose();
         }
 

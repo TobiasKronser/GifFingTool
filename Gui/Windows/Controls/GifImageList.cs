@@ -56,6 +56,11 @@ namespace GifFingTool.Gui.Windows.Controls
             return TestList.Count == 0;
         }
 
+        internal void RemoveItem(GifBitmap selectedGifBitmap)
+        {
+            TestList.Remove(selectedGifBitmap);
+        }
+
         public int Count { get => TestList.Count; }
     }
 }

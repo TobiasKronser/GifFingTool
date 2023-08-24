@@ -12,30 +12,21 @@ using System.Windows.Media.Imaging;
 using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel;
+using GifFingTool.Gui.Windows.Controls.Tools.ToolConfig;
 
 namespace GifFingTool.Gui.Windows.Controls.Tools
 {
     internal class PenToolV2 : ToolBaseV2
     {
         private BmpModColorPixels ActiveBitmapModification = null;
-        private int _size = 50;
-        private Color _color = Color.Red;
+        public readonly ConfigureableToolInt SizeConfig = new ConfigureableToolInt(3, 1, 999);
+        public readonly ConfigureableToolValueUnrestricted<Color> ColorConfig = new ConfigureableToolValueUnrestricted<Color>(Color.Red);
         private MinimalRamBoolArray pixelFlags;
         
         private protected override IBitmapModifyStep BitmapModifyStep => ActiveBitmapModification;
 
         public PenToolV2(GifBitmapEditingContext editingContext) : base(editingContext)
         {
-        }
-
-        public void SetColor(Color color)
-        {
-            _color = color;
-        }
-        
-        public void SetSize(int size)
-        {
-            _size = size;
         }
 
         public override void Reset()
@@ -70,6 +61,8 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
             if (ActiveBitmapModification is null) return;
             if (Mouse.LeftButton == MouseButtonState.Released) return;
 
+            int size = SizeConfig.Value;
+
             System.Drawing.Point currentPoint = new System.Drawing.Point(x, y);
 
             int maxXBound = EditingContext.Bitmap.Width - 1;
@@ -77,10 +70,10 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
 
             int* pixelData = (int*)EditingContext.BitmapData.Scan0;
 
-            int radius = _size / 2;
+            int radius = size / 2;
 
             int min = -radius;
-            int max = radius + _size % 2;
+            int max = radius + size % 2;
 
             int minX = Math.Max(x + min, 0);
             int maxX = Math.Min(x + max, maxXBound);
@@ -134,6 +127,8 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
 
         private unsafe void ActualApplyPaint(int x, int y, int minX, int maxX, int minY, int maxY, int radius, int* pixelData)
         {
+            int colorArgb = ColorConfig.Value.ToArgb();
+
             for (int targetY = minY; targetY < maxY; targetY++)
             {
                 int yIndexOffset = targetY * EditingContext.BitmapData.Width;
@@ -150,7 +145,7 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
                         int pixelIndex = yIndexOffset + targetX;
                         if (pixelFlags[pixelIndex]) continue;
                         pixelFlags[pixelIndex] = true;
-                        pixelData[pixelIndex] = _color.ToArgb();
+                        pixelData[pixelIndex] = colorArgb;
                         targetXs.Add(targetX);
                     }
                 }
@@ -176,7 +171,7 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
 
         public override void MouseLeftButtonDown(int x, int y)
         {
-            ActiveBitmapModification = new BmpModColorPixels(EditingContext.GifBitmap.RotateFlipState, _color);
+            ActiveBitmapModification = new BmpModColorPixels(EditingContext.GifBitmap.RotateFlipState, ColorConfig.Value);
             int pixelCount = EditingContext.Bitmap.Height * EditingContext.Bitmap.Width;
             int intBlockCount = (pixelCount >> 5) + 1;
             pixelFlags = new MinimalRamBoolArray(intBlockCount);

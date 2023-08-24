@@ -24,7 +24,7 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
         {
             PenTool = actualTool;
             _SizeValueProvider = sizeValueProvider;
-            _SizeValueProvider.InvokeOnUpdate = (int newSize) => { PenTool.SetSize(newSize); };
+            _SizeValueProvider.InvokeOnUpdate = (int newSize) => { PenTool.SizeConfig.Value = newSize; };
 
             _SizeValueProvider.SetValue(3);
         }

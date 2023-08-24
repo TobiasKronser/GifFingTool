@@ -49,6 +49,7 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
             AddTool(ToolbarToolEraser.Create(_EditingContext, ActivateTool));
             AddTool(ToolbarToolText.Create(_EditingContext, ActivateTool));
             AddTool(ToolbarToolShapes.Create(_EditingContext, ActivateTool));
+            AddTool(ToolbarToolEnumerate.Create(_EditingContext, ActivateTool));
 
             foreach (IToolbarTool toolbarTool in _tools)
             {

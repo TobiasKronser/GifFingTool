@@ -51,7 +51,7 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
 
         internal ToolbarStandardToolBase(Action<IToolbarTool> activateTool, ToolBaseV2 actualTool, double displayWidth, System.Drawing.Bitmap mainImage = null, params UIElement[] subControls)
         {
-            const int SUBCONTROL_WIDTH = 50;
+            const int SUBCONTROL_WIDTH = 60;
             int subControlColumnCount = (int)Math.Floor((double)((subControls.Length + 2) / 3));
 
             InitializeComponent();
@@ -60,6 +60,10 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
             MainImage = mainImage ?? s_NoImage;
             Temp.printBitmap(MainButton.Image, MainImage);
             ActivateTool = activateTool;
+
+            ToolBaseGrid.ColumnDefinitions.Clear();
+            GridLength mainButtonWidth = new GridLength(displayWidth);
+            ToolBaseGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = mainButtonWidth });
 
             GridLength subControlWidth = new GridLength(SUBCONTROL_WIDTH);
             for(int i = 0; i < subControlColumnCount; i++)
@@ -86,6 +90,46 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
             }
         }
 
+        internal ToolbarStandardToolBase(Action<IToolbarTool> activateTool, ToolBaseV2 actualTool, double[] columnWidths, System.Drawing.Bitmap mainImage = null, params UIElement[] subControls)
+        {
+            InitializeComponent();
+            _actualTool = actualTool;
+            DisplayWidth = 0;
+            foreach(double columnWidth in columnWidths)
+            {
+                DisplayWidth += columnWidth;
+            }
+            
+            MainImage = mainImage ?? s_NoImage;
+            Temp.printBitmap(MainButton.Image, MainImage);
+            ActivateTool = activateTool;
+
+            ToolBaseGrid.ColumnDefinitions.Clear();
+            for (int i = 0; i < columnWidths.Length; i++)
+            {
+                GridLength subControlWidth = new GridLength(columnWidths[i]);
+                ToolBaseGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = subControlWidth });
+            }
+
+            int column = 1;
+            int row = 0;
+            for (int i = 0; i < subControls.Length; i++)
+            {
+                UIElement userControl = subControls[i];
+                ToolBaseGrid.Children.Add(userControl);
+                Grid.SetColumn(userControl, column);
+                Grid.SetRow(userControl, row);
+                if (i % 3 == 2)
+                {
+                    column++;
+                    row = 0;
+                }
+                else
+                {
+                    row++;
+                }
+            }
+        }
 
 
         private void SetActive(bool value)

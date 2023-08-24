@@ -26,6 +26,10 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
             TriangleTopRight,
             TriangleBottomLeft,
             TriangleBottomRight,
+
+            Pentagon,
+            Hexagon,
+            Heptagon,
         }
 
         private protected override IBitmapModifyStep BitmapModifyStep => GetModifyStepOrNull();
@@ -228,6 +232,27 @@ namespace GifFingTool.Gui.Windows.Controls.Tools
                             Point[] triangle = TriangleUtil.CreatePointsForTriangleDown(startPoint, endPoint);
                             if (_fill) g.FillPolygon(_brush, triangle);
                             else g.DrawPolygon(_pen, triangle);
+                        }
+                        break;
+                    case Shape.Pentagon:
+                        {
+                            Point[] points = PolygonUtil.CalculatePoints(5, startPoint, endPoint);
+                            if (_fill) g.FillPolygon(_brush, points);
+                            else g.DrawPolygon(_pen, points);
+                        }
+                        break;
+                    case Shape.Hexagon:
+                        {
+                            Point[] points = PolygonUtil.CalculatePoints(6, startPoint, endPoint);
+                            if (_fill) g.FillPolygon(_brush, points);
+                            else g.DrawPolygon(_pen, points);
+                        }
+                        break;
+                    case Shape.Heptagon:
+                        {
+                            Point[] points = PolygonUtil.CalculatePoints(7, startPoint, endPoint);
+                            if (_fill) g.FillPolygon(_brush, points);
+                            else g.DrawPolygon(_pen, points);
                         }
                         break;
                 }

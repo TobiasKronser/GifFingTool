@@ -81,6 +81,30 @@ namespace GifFingTool.Gui.Windows.Controls.Misc
                             g.FillPolygon(s_ImageBrush, new Point[] { p1, p2, p3 });
                         }
                         break;
+                    case ShapesTool.Shape.Pentagon:
+                        {
+                            Point p1 = new Point(shapePadding, shapePadding);
+                            Point p2 = new Point(bitmapSize - shapePadding, bitmapSize - shapePadding);
+                            Point[] points = PolygonUtil.CalculatePoints(5, p1, p2);
+                            g.FillPolygon(s_ImageBrush, points);
+                        }
+                        break;
+                    case ShapesTool.Shape.Hexagon:
+                        {
+                            Point p1 = new Point(shapePadding, shapePadding);
+                            Point p2 = new Point(bitmapSize - shapePadding, bitmapSize - shapePadding);
+                            Point[] points = PolygonUtil.CalculatePoints(6, p1, p2);
+                            g.FillPolygon(s_ImageBrush, points);
+                        }
+                        break;
+                    case ShapesTool.Shape.Heptagon:
+                        {
+                            Point p1 = new Point(shapePadding, shapePadding);
+                            Point p2 = new Point(bitmapSize - shapePadding, bitmapSize - shapePadding);
+                            Point[] points = PolygonUtil.CalculatePoints(7, p1, p2);
+                            g.FillPolygon(s_ImageBrush, points);
+                        }
+                        break;
                 }
             }
             return bitmap;
@@ -100,6 +124,9 @@ namespace GifFingTool.Gui.Windows.Controls.Misc
             AddButtonToButtonGrid(ShapesTool.Shape.Rectangle);
             AddButtonToButtonGrid(ShapesTool.Shape.Ellipse);
             AddButtonToButtonGrid(ShapesTool.Shape.TriangleLeft);
+            AddButtonToButtonGrid(ShapesTool.Shape.Pentagon);
+            AddButtonToButtonGrid(ShapesTool.Shape.Hexagon);
+            AddButtonToButtonGrid(ShapesTool.Shape.Heptagon);
             AddButtonToButtonGrid(ShapesTool.Shape.TriangleTop);
             AddButtonToButtonGrid(ShapesTool.Shape.TriangleRight);
             AddButtonToButtonGrid(ShapesTool.Shape.TriangleBottom);

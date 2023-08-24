@@ -45,6 +45,21 @@ namespace GifFingTool.Gui.Windows.Controls.Misc
             _blockChangeEvent = false;
             _InvokeOnUpdate(value);
         }
+        public void SetValueNoChangeEvent(int value)
+        {
+            if (value < MinValue)
+            {
+                value = MinValue;
+            }
+            else if (value > MaxValue)
+            {
+                value = MaxValue;
+            }
+            _value = value;
+            _blockChangeEvent = true;
+            ValueTextBlock.Text = value.ToString();
+            _blockChangeEvent = false;
+        }
         public ScrollableIntValue()
         {
             InitializeComponent();
@@ -110,5 +125,6 @@ namespace GifFingTool.Gui.Windows.Controls.Misc
                 SetValue(_value);
             }
         }
+
     }
 }

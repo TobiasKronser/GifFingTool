@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -97,8 +100,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gui\Windows\Controls\Toolbar\ToolbarToolEnumerate.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\EnumerateTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\PolygonTool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolBool.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolEnum.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolInt.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolValue.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolValueList.cs" />
+    <Compile Include="Gui\Windows\Controls\Tools\ToolConfig\ConfigureableToolValueUnrestricted.cs" />
     <Compile Include="Util\ArrayUtil.cs" />
     <Compile Include="Util\MathStk.cs" />
+    <Compile Include="Util\PolygonUtil.cs" />
     <Compile Include="Util\TriangleUtil.cs" />
     <Page Include="Gui\Windows\ColorPickerWindow.xaml">
       <SubType>Designer</SubType>

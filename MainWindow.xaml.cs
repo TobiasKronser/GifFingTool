@@ -58,8 +58,8 @@ namespace GifFingTool
             _ShortcutManager.RegisterShortcut("Select Target", "Open the target selection window.", ShowTargetSelectWindow, Key.T, true, false, shiftOrControl);
             _ShortcutManager.RegisterShortcut("Undo", "Undo", Undo, Key.Z, true, false, controlKey);
             _ShortcutManager.RegisterShortcut("Redo", "Redo", Redo, Key.Y, true, false, controlKey);
-            _ShortcutManager.RegisterShortcut("Save", "Open the Save-Dialog for the entire gif or the current image.", Redo, Key.S, true, false, controlKey);
-            _ShortcutManager.RegisterShortcut("Copy to clipboard", "Copy the current image to clipboard.", Redo, Key.C, true, false, controlKey);
+            _ShortcutManager.RegisterShortcut("Save", "Open the Save-Dialog for the entire gif or the current image.", Save, Key.S, true, false, controlKey);
+            _ShortcutManager.RegisterShortcut("Copy to clipboard", "Copy the current image to clipboard.", CopyCurrentSelection, Key.C, true, false, controlKey);
 
             InterceptKeys.AssureTimeframeCount(1);
             InterceptKeys.RegisterHook(new TimedHook(TryEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.LShiftKey)); //When LShift is pressed twice within 200ms, enable Timeframe 0 for 1000ms

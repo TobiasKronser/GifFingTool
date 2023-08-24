@@ -17,5 +17,23 @@ namespace GifFingTool.Extensions
             }
         }
 
+        public static double Sum(this IEnumerable<double> values)
+        {
+            double result = 0;
+            foreach(double value in values)
+            {
+                result += value;
+            }
+            return result;
+        }
+        public static int Sum(this IEnumerable<int> values)
+        {
+            int result = 0;
+            foreach (int value in values)
+            {
+                result += value;
+            }
+            return result;
+        }
     }
 }

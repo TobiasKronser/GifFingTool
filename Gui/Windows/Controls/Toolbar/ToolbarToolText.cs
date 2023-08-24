@@ -37,7 +37,7 @@ namespace GifFingTool.Gui.Windows.Controls.Toolbar
             CheckBox underlineProvider,
             CheckBox strikeoutProvider,
             CheckBox obliqueProvider
-            ) : base(activateTool, actualTool, DISPLAY_WIDTH, IMAGE_MAIN, fontSizeProvider, fontPicker, inputTextProvider, boldProvider, italicProvider, strikeoutProvider, underlineProvider, obliqueProvider)
+            ) : base(activateTool, actualTool, new double[] { DISPLAY_WIDTH, 60, 30, 30 }, IMAGE_MAIN, fontSizeProvider, fontPicker, inputTextProvider, boldProvider, italicProvider, strikeoutProvider, underlineProvider, obliqueProvider)
         {
             FontSizeProvider = fontSizeProvider;
             BoldProvider = boldProvider;

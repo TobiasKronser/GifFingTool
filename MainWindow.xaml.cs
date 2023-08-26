@@ -63,15 +63,18 @@ namespace GifFingTool
             _ShortcutManager.RegisterShortcut("Paste from clipboard", "If an image is contained in the clipboard, paste it.", AttemptPasteFromClipboard, Key.V, true, false, controlKey);
             _ShortcutManager.RegisterShortcut("Delete selected image", "Permanently delets a selected image.", AttemptDeleteSelectedImage, Key.Delete, true, false, new Key[0]);
 
-            InterceptKeys.AssureTimeframeCount(1);
-            InterceptKeys.RegisterHook(new TimedHook(TryEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.LShiftKey)); //When LShift is pressed twice within 200ms, enable Timeframe 0 for 1000ms
-            InterceptKeys.RegisterHook(new TimedHook(TryEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.RShiftKey)); //When LShift is pressed twice within 200ms, enable Timeframe 0 for 1000ms
+            InterceptKeys.AssureTimeframeCount(2);
+            InterceptKeys.RegisterHook(new TimedHook(AttemptEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.LShiftKey)); //When LShift is pressed twice within 200ms, (Call AttemptEnableTimeframe => enable Timeframe 0 for 1000ms)
+            InterceptKeys.RegisterHook(new TimedHook(AttemptEnableTimeframe, millisTimeframe: 250, ModifierKeys.None, Keys.RShiftKey)); //When LShift is pressed twice within 200ms, enable Timeframe 0 for 1000ms
             InterceptKeys.RegisterHook(new TimeframeDependantHook(TakeScreenshot, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.G)); //When Timeframe 0 is enabled and G is pressed while Shift is being held down, call TakeScreenshot
             InterceptKeys.RegisterHook(new TimeframeDependantHook(ShowTargetSelectWindow, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.T)); //When Timeframe 0 is enabled and T is pressed while Shift is being held down, call ShowTargetSelectWindow
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Undo, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.Z)); //When Timeframe 0 is enabled and T is pressed while Shift is being held down, call ShowTargetSelectWindow
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Redo, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.Y));
             InterceptKeys.RegisterHook(new TimeframeDependantHook(Save, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.S));
             InterceptKeys.RegisterHook(new TimeframeDependantHook(AttemptCopyToClipboard, timeframeIndex: 0, supressOtherHooks: true, ModifierKeys.Shift, Keys.C));
+
+            InterceptKeys.RegisterHook(new TimedHook(() => InterceptKeys.ToggleTimeframe(1), millisTimeframe: 250, ModifierKeys.None, Keys.LControlKey)); //When LShift is pressed twice within 200ms, enable Timeframe 1 until it is pressed twice again
+            InterceptKeys.RegisterHook(new TimeframeDependantHook(TakeScreenshot, timeframeIndex: 1, supressOtherHooks: true, ModifierKeys.None, Keys.F1));
 
             //InterceptKeys.RegisterHook(new Hook(Undo, ModifierKeys.Shift, Keys.Z)); //When Z is pressed while Shift is being held down, call Undo
             //InterceptKeys.RegisterHook(new Hook(Redo, ModifierKeys.Shift, Keys.Y));
@@ -99,7 +102,7 @@ namespace GifFingTool
             //_SelectedGifBitmap = null;
         }
 
-        private void TryEnableTimeframe()
+        private void AttemptEnableTimeframe()
         {
             if (this.IsActive) return;
             InterceptKeys.EnableTimeframe(timeframeIndex: 0, millisDuration: 1000);

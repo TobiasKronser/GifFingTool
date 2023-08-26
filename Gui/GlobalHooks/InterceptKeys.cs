@@ -39,9 +39,24 @@ namespace GifFingTool.Gui.GlobalHooks
             }
         }
 
+        public static void EnableTimeframe(int timeframeIndex)
+        {
+            TriggerTimeframes[timeframeIndex] = int.MaxValue;
+        }
         public static void EnableTimeframe(int timeframeIndex, int millisDuration)
         {
             TriggerTimeframes[timeframeIndex] = Environment.TickCount + millisDuration;
+        }
+
+        public static void ToggleTimeframe(int timeframeIndex)
+        {
+            if (TriggerTimeframes[timeframeIndex] == int.MaxValue)
+            {
+                TriggerTimeframes[timeframeIndex] = int.MinValue;
+            } else
+            {
+                TriggerTimeframes[timeframeIndex] = int.MaxValue;
+            }
         }
 
         public static void DisableTimeframe(int timeframeId)
